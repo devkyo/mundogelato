@@ -102,7 +102,7 @@ const watch = ()=>{
       server: './dist/',
       //use proxy when working in php files
       // proxy: "project.test/src"
-      // port: 3333
+      port: 80
 	});
       gulp.watch(paths.scripts.src, scripts);
       gulp.watch(paths.styles.src, styles);
@@ -123,16 +123,15 @@ const html = ()=>{
    ])
    .pipe(inject(gulp.src([
       './src/assets/js/**.js',
-      './src/assets/css/*.css'
+      './src/assets/css/**.css'
    ], {read: false}), {
-      ignorePath: ['src','dist'],
+      ignorePath: ['src'],
       addRootSlash: false
    }))
    .pipe(gulp.dest(paths.html.dest))
    .pipe(browserSync.stream());
 
 }
-
 
 exports.default = gulp.parallel(scripts,styles,watch,optimiseImages,html);
 

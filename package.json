@@ -1,14 +1,11 @@
 {
-  "name": "muffstrading",
-  "version": "1.0.0",
-  "description": "A theme for Mufftrading",
+  "name": "MundoGelato",
+  "version": "1.1.2",
+  "description": "A simple boiler plate inm gulp frontend",
   "main": "gulpfile.js",
   "scripts": {
+    "dev": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+"
   },
   "keywords": [
     "html",
@@ -16,12 +13,8 @@
     "gulp",
     "browser-sync"
   ],
-  "author": "@devkyo",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/devkyo/rosatel/issues"
-  },
-  "homepage": "https://github.com/devkyo/rosatel#readme",
+  "author": "https://github.com/devkyo",
+  "license": "MIT",
   "dependencies": {
     "bootstrap": "^4.3.1",
     "bulma": "^0.9.0",

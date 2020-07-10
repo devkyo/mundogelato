@@ -1,3 +1,16 @@
+<<<<<<< HEAD
 :root {
   background: skyblue;
+=======
+
+
+:root {
+  --primaryColor: #f35626;
+  --lastColor: #feab3a;
+}
+html { overflow: auto; }
+body {
+  animation: play 1s infinite linear;
+  background: linear-gradient(92deg, var(--primaryColor) 0%, var(--lastColor) 100%);
+>>>>>>> f3e1b033ac9f3c555d71080b08b57091113d6501
 }

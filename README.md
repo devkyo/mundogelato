@@ -1,7 +1,7 @@
-# A boilerplate frontend with Gulp
+# With Gulp simple frontend
 
 **Use**
-* git clone https://github.com/devkyo/frontend-gulp.git
-* cd frontend-gulp
+* git clone https://github.com/devkyo/boilerplate-gulp  projectname
+* cd projectname
 * npm install
-* gulp
+* npm run dev or only gulp
