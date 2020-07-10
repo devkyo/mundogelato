@@ -24,17 +24,22 @@
   "homepage": "https://github.com/devkyo/rosatel#readme",
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "bulma": "^0.9.0",
     "jquery": "^3.4.1",
     "popper.js": "^1.16.0"
   },
   "devDependencies": {
     "browser-sync": "^2.26.7",
+    "fs": "0.0.1-security",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-clean-css": "^4.2.0",
     "gulp-cssnano": "^2.1.3",
     "gulp-imagemin": "^6.2.0",
+    "gulp-inject": "^5.0.5",
+    "gulp-minify": "^3.1.0",
     "gulp-rename": "^1.4.0",
+    "gulp-replace": "^1.0.0",
     "gulp-sass": "^4.0.2",
     "gulp-sourcemaps": "^2.6.5",
     "node-sass": "^4.14.1"

@@ -3,10 +3,14 @@ const sass = require('gulp-sass');
 const browserSync = require('browser-sync').create();
 const autoprefixer = require('gulp-autoprefixer');
 const rename = require('gulp-rename');
-var sourcemaps = require('gulp-sourcemaps');
-var imagemin = require('gulp-imagemin');
-var cleanCSS = require('gulp-clean-css');
+const sourcemaps = require('gulp-sourcemaps');
+const imagemin = require('gulp-imagemin');
+const cleanCSS = require('gulp-clean-css');
+const minify = require('gulp-minify');
+const inject = require('gulp-inject');
 
+
+// paths dirs 
 const paths = {
     styles: {
       src: 'src/assets/scss/*.scss',
@@ -23,12 +27,14 @@ const paths = {
     html: {
        src: './src/**/**.html',
        dest: './dist/'
-    }
-    
+    } 
 };
 
 const styles = ()=>{
-   return gulp.src(paths.styles.src)
+   return gulp.src([
+      paths.styles.src,
+      'node_modules/bulma/bulma.sass'
+   ])
       .pipe(sourcemaps.init())
       .pipe(sass({errLogToConsole: true}))
       .pipe(
@@ -68,45 +74,65 @@ const styles = ()=>{
 
 const scripts = ()=>{
     return gulp.src([
-		'node_modules/bootstrap/dist/js/bootstrap.min.js',
-		'node_modules/jquery/dist/jquery.min.js',
-      'node_modules/popper.js/dist/umd/popper.min.js',
+      //  if you use bootstrap or other plugin
+		// 'node_modules/bootstrap/dist/js/bootstrap.min.js',
+		// 'node_modules/jquery/dist/jquery.min.js',
+      // 'node_modules/popper.js/dist/umd/popper.min.js',
       paths.scripts.src
-	])
-   .pipe(gulp.dest(paths.scripts.dest))
+   ])
+   .pipe(minify({
+      ext: {
+         src: '.js',
+         min: '.min.js'
+      },
+      ignoreFiles: [
+         '*.combo.js',
+         '*.min.js'
+      ]
+   }))
+   .pipe(gulp.dest(
+      paths.scripts.dest,
+      // './src/assets/js/'
+      ))
 	.pipe(browserSync.stream());
 }
 
 const watch = ()=>{
     browserSync.init({
-		server: './src/'
-		// proxy: "project.test/src"
+      server: './dist/',
+      //use proxy when working in php files
+      // proxy: "project.test/src"
+      // port: 3333
 	});
-
       gulp.watch(paths.scripts.src, scripts);
       gulp.watch(paths.styles.src, styles);
       gulp.watch(paths.html.src, html);
-
       gulp.watch(paths.scripts.src).on('change', browserSync.reload);
-      
       gulp.watch(paths.html.src).on('change', browserSync.reload);
       gulp.watch(paths.html.dest).on('change', browserSync.reload);
-
-      // gulp.watch('./dist/**.php').on('change', browserSync.reload);
    
 }
 
+
 const html = ()=>{
-    return gulp.src([paths.html.src,'./src/*.php'])
-    .pipe(gulp.dest(paths.html.dest))
-    .pipe(browserSync.stream())
+
+   return gulp.src([
+      paths.html.src,
+      //use .php extension  when working in php files
+      // './src/*.php'
+   ])
+   .pipe(inject(gulp.src([
+      './src/assets/js/**.js',
+      './src/assets/css/*.css'
+   ], {read: false}), {
+      ignorePath: ['src','dist'],
+      addRootSlash: false
+   }))
+   .pipe(gulp.dest(paths.html.dest))
+   .pipe(browserSync.stream());
+
 }
 
-exports.styles = styles
-exports.watch = watch
-exports.scripts = scripts
-exports.html = html
-exports.optimiseImages = optimiseImages
 
-exports.default = gulp.parallel(styles,scripts,html,watch,optimiseImages);
+exports.default = gulp.parallel(scripts,styles,watch,optimiseImages,html);
 
