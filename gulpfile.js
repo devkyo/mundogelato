@@ -33,9 +33,10 @@ const paths = {
 const styles = ()=>{
    return gulp.src([
       paths.styles.src,
-      'node_modules/bulma/bulma.sass'
+      'node_modules/bulma/bulma.sass',
+      'node_modules/modal-video/scss/modal-video.scss',
    ])
-      .pipe(sourcemaps.init())
+      // .pipe(sourcemaps.init())
       .pipe(sass({errLogToConsole: true}))
       .pipe(
          autoprefixer({
@@ -65,6 +66,7 @@ const styles = ()=>{
        .src(paths.images.src)
        .pipe(
          imagemin({
+         progressive: true,
            interlaced: true,
          }),
        )
@@ -78,6 +80,8 @@ const scripts = ()=>{
 		// 'node_modules/bootstrap/dist/js/bootstrap.min.js',
 		// 'node_modules/jquery/dist/jquery.min.js',
       // 'node_modules/popper.js/dist/umd/popper.min.js',
+      'node_modules/modal-video/js/jquery-modal-video.js',
+      'node_modules/modal-video/js/modal-video.js',
       paths.scripts.src
    ])
    .pipe(minify({
@@ -90,10 +94,8 @@ const scripts = ()=>{
          '*.min.js'
       ]
    }))
-   .pipe(gulp.dest(
-      paths.scripts.dest,
-      // './src/assets/js/'
-      ))
+   .pipe(gulp.dest(paths.scripts.dest))
+   // .pipe(gulp.dest('./src/assets/js/'))
 	.pipe(browserSync.stream());
 }
 
@@ -107,9 +109,11 @@ const watch = ()=>{
       gulp.watch(paths.scripts.src, scripts);
       gulp.watch(paths.styles.src, styles);
       gulp.watch(paths.html.src, html);
+      gulp.watch(paths.images.src, optimiseImages);
       gulp.watch(paths.scripts.src).on('change', browserSync.reload);
       gulp.watch(paths.html.src).on('change', browserSync.reload);
       gulp.watch(paths.html.dest).on('change', browserSync.reload);
+      gulp.watch(paths.images.dest).on('change', browserSync.reload);
    
 }
 
@@ -126,12 +130,13 @@ const html = ()=>{
       './src/assets/css/**.css'
    ], {read: false}), {
       ignorePath: ['src'],
-      addRootSlash: false
+      addRootSlash: false,
+      relative: false
    }))
    .pipe(gulp.dest(paths.html.dest))
    .pipe(browserSync.stream());
 
 }
 
-exports.default = gulp.parallel(scripts,styles,watch,optimiseImages,html);
+exports.default = gulp.parallel(scripts,styles,optimiseImages,html,watch);
 

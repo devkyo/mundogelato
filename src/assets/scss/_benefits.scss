@@ -1,0 +1,88 @@
+.benefits {
+  width: 100%;
+  height: auto;
+  padding: 3rem 0;
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 900;
+    text-align: center;
+    color: var(--primaryColor);
+    position: relative;
+    &:before {
+      content: "Beneficios";
+      position: absolute;
+      color: var(--secundaryColor);
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 7px;
+      background: url(../images/line-faq.png);
+
+    }
+  }
+
+  &__content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background: url(../images/icecream-main.png), url(../images/milk-center.jpg);
+    background-repeat: no-repeat, no-repeat;
+    background-size: contain, contain;
+    background-position: center, center;
+    margin-top: 5rem;
+  }
+
+  &__left {
+    width: 30%;
+    text-align: left;
+    padding: 0;
+    transform: translateX(70px);
+    li {
+      margin-bottom: 1.5rem;
+      position: relative;
+      @include icon(1,'1',left);
+      @include icon(2,'2',left);
+      @include icon(3,'3',left);
+
+    }
+    h3 {
+      font-weight: bold;
+      font-size: 1.4rem;
+      color: var(--primaryColor);
+      line-height: 1.4rem;
+    }
+
+   
+  }
+  &__right {
+    width: 30%;
+    text-align: right;
+    padding: 0;
+    transform: translateX(-70px);
+    li {
+      margin-bottom: 1.5rem;
+      position: relative;
+      @include icon(1,'4',right);
+      @include icon(2,'5',right);
+      @include icon(3,'6',right);
+    }
+    h3 {
+      font-weight: bold;
+      font-size: 1.4rem;
+      color: var(--primaryColor);
+      line-height: 1.4rem;
+    }
+  }
+}

@@ -1,0 +1,127 @@
+header {
+  width: 100%;
+  padding: 1.4em 0;
+  position: fixed;
+  z-index: 999;
+  transition: all .2s;
+
+  
+  .navbar {
+    background: transparent;
+  }
+  .navbar-item {
+    font-weight: 600;
+    color: var(--white);
+    padding: 0;
+    margin: .5rem .75rem;
+    &:after {
+      content: "";
+      width: 0;
+      height: 7px;
+      position: absolute;
+      background: url('../images/line.png');
+      // background-size: contain;
+      background-position: center;
+      bottom: 0;
+      left: 50%;
+      transition: all .3s;
+    }
+    &:focus {
+      background-color: transparent;
+      color:  var(--white);
+    }
+    &:hover {
+      background: transparent;
+      color:  var(--white);
+    }
+
+    &:hover:after {
+      width: 100%;
+      left: 0;
+    }
+  }
+  .navbar-social {
+    display: flex;
+    line-height: 1.5;
+    padding: 0 .75rem;
+    position: relative;
+    align-items: center;
+    li {
+      margin: 0 .5em;
+      font-size: 1.3em;
+
+      a {
+        color: #fff;
+        transition: all .2s;
+      }
+
+      &:nth-child(1) {
+        a {
+          &:hover {
+            color: rgba(#fff,.8);
+          }
+        }
+      }
+      &:nth-child(2){
+        a {
+          &:hover {
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          }
+        }
+      }
+      &:nth-child(3){
+        a {
+          &:hover {
+            color: #26D469;
+          }
+        }
+      }
+    }
+
+  }
+
+  .navbar-burger {
+    color: #fff;
+  }
+
+  @media only screen and (max-width: 1023px){
+    padding: .5rem 0;
+    background: #0065C8;
+    .navbar-item {
+      color: var(--primaryColor);
+    }
+    .navbar-social {
+      color: var(--primaryColor);
+      li {
+        a {
+          color: var(--primaryColor);
+        }
+      }
+    }
+  }
+
+}
+
+
+.navbar-menu.is-active {
+  animation: navAnim .2s ease-in-out;
+}
+
+@keyframes navAnim {
+  0% {
+    display: none;
+    opacity: 0;
+    height: 0;
+  }
+  50% {
+    display: block;
+    opacity: 0;
+    height: 0;
+  }
+  100% {
+    opacity: 1;
+    height: 200px;
+  }
+}

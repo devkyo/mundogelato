@@ -1,0 +1,46 @@
+@mixin icon($nth, $number, $position) {
+
+  &:nth-child(#{$nth}){
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      #{$position}: -70px;
+      background: url(../images/splash.png) no-repeat;
+      width: 62px;
+      height: 65px;
+    }
+    &:after {
+      content: $number;
+      font-family: sans-serif;
+      position: absolute;
+      top: 4px;
+      #{$position}: -50px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 2.2rem;
+      
+     }
+  }
+
+}
+
+
+
+@mixin btn($border, $color, $bg, $left, $right, $colorhover) {
+  border: 1px solid $border;
+  background: $bg;
+  font-weight: bold;
+  color: $color;
+  border-radius: 2rem;
+  padding: .5rem 1.5rem;
+  text-align: center;
+  font-size: 1rem;
+  margin: .6rem auto;
+  box-sizing: border-box;
+  transition: all .3s;
+  &:hover {
+    background: linear-gradient(to right, $left, $right);
+    color: $colorhover;
+  }
+}

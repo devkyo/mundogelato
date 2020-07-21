@@ -1,7 +1,0 @@
-<<<<<<< HEAD
-:root{background:#87ceeb}
-=======
-.welcome{width:100%;height:100vh;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column}.welcome__title{font-size:1.3em;font-weight:500;color:#fff}.welcome__btn{border:none;border-radius:3px;padding:.5em 1em;margin-top:1em;font-weight:bolder;color:var(--primaryColor)}.welcome__btn:focus{outline:0}@-webkit-keyframes play{from{-webkit-filter:hue-rotate(0);filter:hue-rotate(0)}to{-webkit-filter:hue-rotate(-360deg);filter:hue-rotate(-360deg)}}@keyframes play{from{-webkit-filter:hue-rotate(0);filter:hue-rotate(0)}to{-webkit-filter:hue-rotate(-360deg);filter:hue-rotate(-360deg)}}:root{--primaryColor:#f35626;--lastColor:#feab3a}html{overflow:auto}body{-webkit-animation:play 1s infinite linear;animation:play 1s infinite linear;background:-o-linear-gradient(358deg, var(--primaryColor) 0, var(--lastColor) 100%);background:linear-gradient(92deg, var(--primaryColor) 0, var(--lastColor) 100%)}
->>>>>>> f3e1b033ac9f3c555d71080b08b57091113d6501
-
-/*# sourceMappingURL=main.min.css.map */
